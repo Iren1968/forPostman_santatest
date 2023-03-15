@@ -1,0 +1,1225 @@
+{
+	"info": {
+		"_postman_id": "958d7a6b-5586-4cb8-af70-3fb9862cebcf",
+		"name": "HomeTask12_Santa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "20507220-958d7a6b-5586-4cb8-af70-3fb9862cebcf"
+	},
+	"item": [
+		{
+			"name": "HT12-1.1 Create new box",
+			"item": [
+				{
+					"name": "Login (correct login, correct password)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "50b59aca-0e96-4b23-bdc8-98b34cf103f4",
+								"exec": [
+									"pm.test('Status code = 200', () => {\r",
+									"    pm.response.to.have.status(200)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 500ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Login responce body is OK\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.id).to.eql(3001295);\r",
+									"  pm.expect(responseJson.accountType).to.eql(\"email\");\r",
+									"  pm.expect(responseJson.username).to.eql(\"Irina\");\r",
+									"  pm.expect(responseJson.email).to.eql(\"kapadolgova@gmail.com\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "08ff9f6c-7cfd-4c38-949a-fbf2e56a6374",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "_ym_uid=1677444157428233296; _ym_d=1677444157; connect.sid=s%3AdnmHCRJbdFx1IR56ifN11ZLYAAjjLw_B.pgVGInlRsALdnZ7gRpdA3lyb9ikG7mufjHbjwPs5QZs; _ym_isad=1; jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMwMDEyOTUsImlhdCI6MTY3ODgyNTM5NiwiZXhwIjoxNjc4ODI4OTk2fQ.lEcQj9d-5Ng9sgTfP1jNbQ3FZ5PrcU_R6gvHZg3QNFg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{userEmail}}\",\r\n\"password\": \"{{userPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}login",
+							"host": [
+								"{{baseURL}}login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new box (login correct, password correct)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "47666136-67e7-453e-950a-d2784f9eb2d7",
+								"exec": [
+									"pm.test('Status code = 200', () => {\r",
+									"    pm.response.to.have.status(200)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 450ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(450);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Login responce body is OK\", () => { \r",
+									"  const responseJson = pm.response.json(); \r",
+									"    console.log(responseJson.box.picture) \r",
+									"  pm.expect(responseJson.box.picture).to.eql(\"cup_one\"); \r",
+									"   \r",
+									"    \r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "55b35eb7-7590-4274-b221-0a3fd2ac297a",
+								"exec": [
+									"pm.collectionVariables.set(\"boxName\", \"boxNameGenerated + {{$randomWord}}\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "a668319d-27ad-4e5c-a040-0b8bf1f4841f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": null,\r\n    \"name\": \"{{boxName}}\",\r\n    \"key\": \"EW6O5n\",\r\n    \"picture\": \"cup_one\",\r\n    \"usePost\": false,\r\n    \"useCashLimit\": null,\r\n    \"cashLimit\": null,\r\n    \"cashLimitCurrency\": null,\r\n    \"useWish\": true,\r\n    \"useCircleDraw\": null,\r\n    \"isInviteAfterDraw\": null,\r\n    \"isArchived\": null,\r\n    \"createAdminCard\": null,\r\n    \"isCreated\": true,\r\n    \"useNames\": true,\r\n    \"isPhoneRequired\": false,\r\n    \"logo\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}box",
+							"host": [
+								"{{baseURL}}box"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b5b6ebcf-a500-4e57-8738-a800207a3012",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", () => {\r",
+									"    pm.response.to.have.header(\"Content-Type\") // проверка типа\r",
+									"    \r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "13d87a5d-8c89-4c78-b38a-6b276c73b78d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/api/logout?",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"logout"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "97e6d262-a711-4691-ae7d-24ed27d7d39a",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "dd1d08aa-9647-4ff5-8554-8d6141682c1c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5a8a5769-e527-42a8-80c0-71e64373be81",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "HT12-1.2 Edit box",
+			"item": [
+				{
+					"name": "Login (login correct, password correct)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "089e3ed2-a6cc-4ad0-b7a9-812579c016bd",
+								"exec": [
+									"pm.test('Status code = 200', () => {\r",
+									"    pm.response.to.have.status(200)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 450ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(450);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Login responce body is OK\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.id).to.eql(3001295);\r",
+									"  pm.expect(responseJson.accountType).to.eql(\"email\");\r",
+									"  pm.expect(responseJson.username).to.eql(\"Irina\");\r",
+									"  pm.expect(responseJson.email).to.eql(\"kapadolgova@gmail.com\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "b12b6890-98e5-4ddd-9f55-121b5868f535",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{userEmail}}\",\r\n\"password\": \"{{userPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}login?redirect=%2F",
+							"host": [
+								"{{baseURL}}login"
+							],
+							"query": [
+								{
+									"key": "redirect",
+									"value": "%2F"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edited box",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a3123f72-cb19-4825-b1b7-69c9db700b1c",
+								"exec": [
+									"pm.test('Status code = 200', () => {\r",
+									"    pm.response.to.have.status(200)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 450ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(450);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Login responce body is OK\", () => { \r",
+									"  const responseJson = pm.response.json(); \r",
+									"    console.log(responseJson.box.picture) \r",
+									"  pm.expect(responseJson.box.picture).to.eql(\"cup_one\"); \r",
+									"  pm.expect(responseJson.box.name).to.eql(\"Мешок деда Мороза2\"); \r",
+									" \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "5f1de8ee-257f-4afc-b806-7a4c9426c72d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": null,\r\n    \"name\": \"Мешок деда Мороза2\",\r\n    \"key\": \"yMd9cj\",\r\n    \"picture\": \"cup_one\",\r\n    \"usePost\": false,\r\n    \"useCashLimit\": false,\r\n    \"cashLimit\": null,\r\n    \"cashLimitCurrency\": null,\r\n    \"useWish\": true,\r\n    \"useCircleDraw\": null,\r\n    \"isInviteAfterDraw\": null,\r\n    \"isArchived\": null,\r\n    \"createAdminCard\": null,\r\n    \"isCreated\": null,\r\n    \"useNames\": true,\r\n    \"isPhoneRequired\": false,\r\n    \"logo\": null\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}box",
+							"host": [
+								"{{baseURL}}box"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3479a531-0c2e-41d5-8735-9c566fa58e68",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", () => {\r",
+									"    pm.response.to.have.header(\"Content-Type\") // проверка типа\r",
+									"    \r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "33d169da-e632-4327-96d0-a03854e1773f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}logout",
+							"host": [
+								"{{baseURL}}logout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "40ca917c-dea0-44e1-ac5b-bd4984a6b3ce"
+		},
+		{
+			"name": "HT12-1.3 Create new name box with spec symbol",
+			"item": [
+				{
+					"name": "Login (correct login, correct password)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5f46f9cd-c0b5-4864-8c9d-eabefe52666a",
+								"exec": [
+									"pm.test('Status code = 200', () => {\r",
+									"    pm.response.to.have.status(200)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 450ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(450);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Login responce body is OK\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.id).to.eql(3001295);\r",
+									"  pm.expect(responseJson.accountType).to.eql(\"email\");\r",
+									"  pm.expect(responseJson.username).to.eql(\"Irina\");\r",
+									"  pm.expect(responseJson.email).to.eql(\"kapadolgova@gmail.com\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "8fdefae5-dd09-442d-b218-477a914a43b1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{userEmail}}\",\r\n\"password\": \"{{userPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}login",
+							"host": [
+								"{{baseURL}}login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new name box (with special symbol)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "76c14cb1-e3cc-4287-b636-9776ad0e2284",
+								"exec": [
+									"pm.test('Status code = 200', () => {\r",
+									"    pm.response.to.have.status(200)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 450ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(450);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Login responce body is OK\", () => { \r",
+									"  const responseJson = pm.response.json(); \r",
+									"    console.log(responseJson.box.picture) \r",
+									"  pm.expect(responseJson.box.picture).to.eql(\"mittens\"); \r",
+									"  pm.expect(responseJson.box.name).to.eql(\"Мешок & подарков\");\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "ebee9538-87a7-4515-ba9c-1a9063b59fc7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": null,\r\n    \"name\": \"Мешок & подарков\",\r\n    \"key\": \"VrhBFS\",\r\n    \"picture\": \"mittens\",\r\n    \"usePost\": false,\r\n    \"useCashLimit\": null,\r\n    \"cashLimit\": null,\r\n    \"cashLimitCurrency\": null,\r\n    \"useWish\": true,\r\n    \"useCircleDraw\": null,\r\n    \"isInviteAfterDraw\": null,\r\n    \"isArchived\": null,\r\n    \"createAdminCard\": null,\r\n    \"isCreated\": true,\r\n    \"useNames\": true,\r\n    \"isPhoneRequired\": false,\r\n    \"logo\": null\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}box",
+							"host": [
+								"{{baseURL}}box"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5ec63a4b-a40d-4d03-8b67-6b5938007bfc",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", () => {\r",
+									"    pm.response.to.have.header(\"Content-Type\") // проверка типа\r",
+									"    \r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "9e8785bf-a81f-47a8-9e3a-d8c5afa525d2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}logout?",
+							"host": [
+								"{{baseURL}}logout"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "4f105d6d-75e4-4c03-b0ce-b385bb737835"
+		},
+		{
+			"name": "HT12-1.3 Create new name box only spec symbol",
+			"item": [
+				{
+					"name": "Login (correct login, correct password)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0dd03af1-efee-4115-a54c-8eb674137353",
+								"exec": [
+									"pm.test('Status code = 200', () => {\r",
+									"    pm.response.to.have.status(200)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 450ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(450);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Login responce body is OK\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.id).to.eql(3001295);\r",
+									"  pm.expect(responseJson.accountType).to.eql(\"email\");\r",
+									"  pm.expect(responseJson.username).to.eql(\"Irina\");\r",
+									"  pm.expect(responseJson.email).to.eql(\"kapadolgova@gmail.com\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "4eec398c-58ff-4b89-a1b0-e72989c9b3dc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{userEmail}}\",\r\n\"password\": \"{{userPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}login",
+							"host": [
+								"{{baseURL}}login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new name box (only special symbol)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "79140eb5-142f-4f94-8413-729f8926c893",
+								"exec": [
+									"pm.test('Status code = 200', () => {\r",
+									"    pm.response.to.have.status(200)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 450ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(450);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Login responce body is OK\", () => { \r",
+									"  const responseJson = pm.response.json(); \r",
+									"    console.log(responseJson.box.picture) \r",
+									"  pm.expect(responseJson.box.picture).to.eql(\"cup_one\"); \r",
+									"  pm.expect(responseJson.box.name).to.eql(\"&%@\"); \r",
+									"   \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "eebed170-017c-475b-84c9-b210c5296c4d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": null,\r\n    \"name\": \"&%@\",\r\n    \"key\": \"EW6O5n\",\r\n    \"picture\": \"cup_one\",\r\n    \"usePost\": false,\r\n    \"useCashLimit\": null,\r\n    \"cashLimit\": null,\r\n    \"cashLimitCurrency\": null,\r\n    \"useWish\": true,\r\n    \"useCircleDraw\": null,\r\n    \"isInviteAfterDraw\": null,\r\n    \"isArchived\": null,\r\n    \"createAdminCard\": null,\r\n    \"isCreated\": true,\r\n    \"useNames\": true,\r\n    \"isPhoneRequired\": false,\r\n    \"logo\": null\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}box",
+							"host": [
+								"{{baseURL}}box"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ac247bfd-33f3-4807-a43f-2b5e8ba4961f",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", () => {\r",
+									"    pm.response.to.have.header(\"Content-Type\") // проверка типа\r",
+									"    \r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "e2b9bb2e-3102-4dad-853d-5aed43ac0428",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}logout?",
+							"host": [
+								"{{baseURL}}logout"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "b7728256-3168-4949-9397-03944847e8db"
+		},
+		{
+			"name": "HT12-1.4 Create new name box  cyrillic alphabet",
+			"item": [
+				{
+					"name": "Login (correct login, correct password)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bd62a7b9-95ca-4204-8f37-42c536863628",
+								"exec": [
+									"pm.test('Status code = 200', () => {\r",
+									"    pm.response.to.have.status(200)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 450ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(450);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Login responce body is OK\", () => {\r",
+									"  const responseJson = pm.response.json();\r",
+									"  pm.expect(responseJson.id).to.eql(3001295);\r",
+									"  pm.expect(responseJson.accountType).to.eql(\"email\");\r",
+									"  pm.expect(responseJson.username).to.eql(\"Irina\");\r",
+									"  pm.expect(responseJson.email).to.eql(\"kapadolgova@gmail.com\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "e2126f0b-9609-4603-91fe-c6577fdd859e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{userEmail}}\",\r\n\"password\": \"{{userPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}login",
+							"host": [
+								"{{baseURL}}login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new name box (cyrillic alphabet)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fe001b8f-e4b4-4dde-a06a-27c70141e2f2",
+								"exec": [
+									"pm.test('Status code = 200', () => {\r",
+									"    pm.response.to.have.status(200)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 450ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(450);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Login responce body is OK\", () => { \r",
+									"  const responseJson = pm.response.json(); \r",
+									"    console.log(responseJson.box.picture) \r",
+									"  pm.expect(responseJson.box.picture).to.eql(\"cup_one\"); \r",
+									"  pm.expect(responseJson.box.name).to.eql(\"Ящик Пандоры\"); \r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "e5f52484-3e9b-4df1-b118-c7e570c0eba2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": null,\r\n    \"name\": \"Ящик Пандоры\",\r\n    \"key\": \"EW6O5n\",\r\n    \"picture\": \"cup_one\",\r\n    \"usePost\": false,\r\n    \"useCashLimit\": null,\r\n    \"cashLimit\": null,\r\n    \"cashLimitCurrency\": null,\r\n    \"useWish\": true,\r\n    \"useCircleDraw\": null,\r\n    \"isInviteAfterDraw\": null,\r\n    \"isArchived\": null,\r\n    \"createAdminCard\": null,\r\n    \"isCreated\": true,\r\n    \"useNames\": true,\r\n    \"isPhoneRequired\": false,\r\n    \"logo\": null\r\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}box",
+							"host": [
+								"{{baseURL}}box"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "36ae5c1b-5dcc-4ed1-a45d-a6b5c190d36c",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", () => {\r",
+									"    pm.response.to.have.header(\"Content-Type\") // проверка типа\r",
+									"    \r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "921fd0bf-3beb-4dc3-8281-70a93ee2d929",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}logout?",
+							"host": [
+								"{{baseURL}}logout"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "cdf5bfde-1e78-46b1-9d1a-165318f6df48"
+		},
+		{
+			"name": "HT12-1.5 Delete box",
+			"item": [
+				{
+					"name": "Status box",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2dcc778b-4b83-4c7f-9d81-c5213fc83197",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", () => {\r",
+									"    pm.response.to.have.header(\"Content-Type\") // проверка типа\r",
+									"    \r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "bf995bd6-a801-44d6-a8d9-84791fea6459",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}box",
+							"host": [
+								"{{baseURL}}box"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete box",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "12efc994-1231-4c10-b310-fe6c4ec15d11",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", () => {\r",
+									"    pm.response.to.have.header(\"Content-Type\") // проверка типа\r",
+									"    \r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "5c36eb4a-6072-4561-bbb9-50a6fb934a0b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}box",
+							"host": [
+								"{{baseURL}}box"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b8d82b8b-b45b-4e12-93c0-e885d67515ba",
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", () => {\r",
+									"    pm.response.to.have.header(\"Content-Type\") // проверка типа\r",
+									"    \r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "2c38764d-96c2-4adb-b448-698a6002ec5b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/plain",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}logout?",
+							"host": [
+								"{{baseURL}}logout"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "e1231a6b-9b2c-47ea-9fda-da9b55a3c4f7"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "de9a9ce4-a564-4bd3-b3a4-f1652115327b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d678dba6-d860-4ee2-9c7d-2cb222334eed",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "71bba4f1-62f5-46c0-866f-34f687be5af4",
+			"key": "key",
+			"value": "1Etg9p",
+			"type": "string"
+		},
+		{
+			"id": "2a296132-175d-4ab4-864a-9ae8764182d2",
+			"key": "boxName",
+			"value": ""
+		}
+	]
+}
