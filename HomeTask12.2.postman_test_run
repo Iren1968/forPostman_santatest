@@ -1,0 +1,101 @@
+{
+	"id": "1a2c30e7-1740-4d1c-b8c1-cee004d21353",
+	"name": "HomeTask11",
+	"timestamp": "2023-03-15T21:02:48.353Z",
+	"collection_id": "20507220-3470630e-9a8c-45c4-90a6-cd2c272dffc6",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 21,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2023-03-15T21:02:46.870Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "8c6a6b30-653f-4551-9a17-a84ce55f8c35",
+			"name": "Change password",
+			"url": "https://staging.lpitko.ru/api/account/password",
+			"time": 58,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code = 200": true,
+				"Response time is less than 450ms": true,
+				"Login responce body is OK": true
+			},
+			"testPassFailCounts": {
+				"Status code = 200": {
+					"pass": 7,
+					"fail": 0
+				},
+				"Response time is less than 450ms": {
+					"pass": 7,
+					"fail": 0
+				},
+				"Login responce body is OK": {
+					"pass": 7,
+					"fail": 0
+				}
+			},
+			"times": [
+				141,
+				56,
+				62,
+				79,
+				62,
+				55,
+				58
+			],
+			"allTests": [
+				{
+					"Status code = 200": true,
+					"Response time is less than 450ms": true,
+					"Login responce body is OK": true
+				},
+				{
+					"Status code = 200": true,
+					"Response time is less than 450ms": true,
+					"Login responce body is OK": true
+				},
+				{
+					"Status code = 200": true,
+					"Response time is less than 450ms": true,
+					"Login responce body is OK": true
+				},
+				{
+					"Status code = 200": true,
+					"Response time is less than 450ms": true,
+					"Login responce body is OK": true
+				},
+				{
+					"Status code = 200": true,
+					"Response time is less than 450ms": true,
+					"Login responce body is OK": true
+				},
+				{
+					"Status code = 200": true,
+					"Response time is less than 450ms": true,
+					"Login responce body is OK": true
+				},
+				{
+					"Status code = 200": true,
+					"Response time is less than 450ms": true,
+					"Login responce body is OK": true
+				}
+			]
+		}
+	],
+	"count": 7,
+	"totalTime": 513,
+	"collection": {
+		"requests": [
+			{
+				"id": "8c6a6b30-653f-4551-9a17-a84ce55f8c35",
+				"method": "PUT"
+			}
+		]
+	}
+}
