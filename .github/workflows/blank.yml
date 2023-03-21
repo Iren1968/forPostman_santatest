@@ -33,4 +33,5 @@ jobs:
       - name: Run a multi-line script
         run: |
           curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
-          postman collection run postman/collections/HomeTask12_Santa.json -e "main.postman_environment.json"
+          postman login --with-api-key PMAK-6419e4086c782215e3f97564-800ebac43d8e7008c4792fdf294d74860d
+          postman collection run 20507220-da670eeb-8b5d-4fd5-abc8-8d05f2267535 -e 20507220-feedf62d-258e-4c71-b0e0-1720dade7b2c
